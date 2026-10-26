@@ -132,7 +132,7 @@ void onThisDayCallbackDispatcher() async {
               android:
                   AndroidInitializationSettings('@drawable/ic_notification'),
               linux: LinuxInitializationSettings(
-                  defaultActionName: 'On This Day')));
+                  defaultActionName: 'Ngày này năm xưa')));
 
       // Localized notification text is stored in SharedPreferences upon startup
       var prefs = await SharedPreferences.getInstance();
@@ -141,7 +141,7 @@ void onThisDayCallbackDispatcher() async {
 
       var androidDetails = AndroidNotificationDetails(
         'daily_you_on_this_day',
-        title ?? 'On This Day',
+        title ?? 'Ngày này năm xưa',
         icon: '@drawable/ic_notification',
         importance: Importance.defaultImportance,
         priority: Priority.defaultPriority,
@@ -181,7 +181,7 @@ void callbackDispatcher() async {
               android:
                   AndroidInitializationSettings('@drawable/ic_notification'),
               linux:
-                  LinuxInitializationSettings(defaultActionName: 'Log Today')));
+                  LinuxInitializationSettings(defaultActionName: 'Ghi chép hôm nay')));
 
       // Localized notification text is stored in SharedPreferences upon startup
       var prefs = await SharedPreferences.getInstance();
@@ -190,7 +190,7 @@ void callbackDispatcher() async {
 
       var androidPlatformChannelSpecifics = AndroidNotificationDetails(
         'daily_you_reminder',
-        title ?? "Log Today!",
+        title ?? "Ghi chép hôm nay!",
         icon: '@drawable/ic_notification',
         importance: Importance.defaultImportance,
         priority: Priority.defaultPriority,
@@ -516,15 +516,10 @@ class _MainAppState extends State<MainApp> {
                   final override = configProvider.getOverrideLanguage();
                   if (override != null) return override;
 
-                  if (locale != null) {
-                    for (final supported in supportedLocales) {
-                      if (supported.languageCode == locale.languageCode) {
-                        return supported;
-                      }
-                    }
+                  if (locale != null && locale.languageCode == 'vi') {
+                    return locale;
                   }
-
-                  return const Locale('en');
+                  return const Locale('vi');
                 },
                 theme: lightTheme,
                 darkTheme: darkTheme,
